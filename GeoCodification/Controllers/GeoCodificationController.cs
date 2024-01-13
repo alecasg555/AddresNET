@@ -16,8 +16,6 @@ namespace GeoCodification.Controllers
         }
 
         public async Task<IActionResult> GetAddressCoordinates(string address)
-        
-        
         {
             string Coordinates = await _geoCodificationService.GetAddressCoordinates(address);
             return Ok(Coordinates);
