@@ -1,0 +1,6 @@
+@GeoCodification_HostAddress = http://localhost:5072
+
+GET {{GeoCodification_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
