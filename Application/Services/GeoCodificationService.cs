@@ -20,13 +20,13 @@ namespace Application.Services
                     throw new Exception("No Coordinates Found In The Provided Address");
                 var coordinates = new AddressCoordinatesModel
                 {
-                    Name = coordinatesResponse.result.input.address.address,
+                    Name = coordinatesResponse.result.input.address.address,    
                     Latitude = coordinatesResponse.result.addressMatches[0].coordinates.y,
                     Longitude = coordinatesResponse.result.addressMatches[0].coordinates.x
                 };
+
                 return await GetWeatherFromCoordinates(coordinates);
             }
-            throw new NotImplementedException();
         }
         public async Task<string> GetWeatherFromCoordinates(AddressCoordinatesModel addressCoordinates)
         {
@@ -39,7 +39,7 @@ namespace Application.Services
                 if (!request.IsSuccessStatusCode)
                     throw new Exception("Error Invalid Parameters");              
 
-                dynamic response = JsonConvert.DeserializeObject<JObject>(await request.Content.ReadAsStringAsync()) ?? new JObject();
+                dynamic response = JsonConvert.DeserializeObject<JObject>(await request.Content.ReadAsStringAsync()) ?? new JObject(); 
                 var requestForecast = await client.GetAsync(response.properties.forecast.ToString());
                 return await requestForecast.Content.ReadAsStringAsync();
             }
